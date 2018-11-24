@@ -1,7 +1,10 @@
 title: Docker 学习笔记（一）
 author: ACE NI
-date: 2018-06-28 22:31:11
 tags:
+  - Docker
+categories:
+  - 高并发架构
+date: 2018-06-28 22:31:11
 ---
 Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。
 
@@ -29,10 +32,10 @@ $ yum remove docker \
                   docker-selinux \
                   docker-engine-selinux \
                   docker-engine
-                  
+
 # Install Docker CE
 $ yum install -y yum-utils device-mapper-persistent-data lvm2
-  
+
 $ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
 $ yum-config-manager --enable docker-ce-edge

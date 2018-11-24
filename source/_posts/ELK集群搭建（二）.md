@@ -8,9 +8,9 @@ date: 2018-04-14 16:10:00
 ---
 # Elasticsearch 破解
 
-	本来是想先整logstash订阅kafka集群清洗日志到elasticsearch，但是突然发现kibana显示x-pack一个月过期。
-    百度一下果然有破解方法，这一下强迫症就犯了，不破解不舒服斯基。
-    蛋疼的是网上资料基本都是5版本的，最高也就6.0版本，和我现在用的6.2.3的版本还是有点差距，果然一路趟坑，花了一天时间终于爬完了破解之旅。
+本来是想先整logstash订阅kafka集群清洗日志到elasticsearch，但是突然发现kibana显示x-pack一个月过期。
+百度一下果然有破解方法，这一下强迫症就犯了，不破解不舒服斯基。
+蛋疼的是网上资料基本都是5版本的，最高也就6.0版本，和我现在用的6.2.3的版本还是有点差距，果然一路趟坑，花了一天时间终于爬完了破解之旅。
 
 <!--more-->
 
@@ -95,7 +95,7 @@ public class LicenseVerifier
             }
         }
     }
-    
+
     public static boolean verifyLicense(final License license) {
         byte[] publicKeyBytes;
         try (final InputStream is = LicenseVerifier.class.getResourceAsStream("/public.key")) {

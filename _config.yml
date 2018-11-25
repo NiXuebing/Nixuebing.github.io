@@ -85,3 +85,9 @@ deploy:
 #   github: git@github.com:NiXuebing/Nixuebing.github.io.git,master
 #   coding: git@git.coding.net:Nixuebing/Hexo_Blog.git,master
 
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+

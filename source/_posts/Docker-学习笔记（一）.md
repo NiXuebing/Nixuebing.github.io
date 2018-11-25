@@ -1,10 +1,11 @@
+---
 title: Docker 学习笔记（一）
+date: 2018-06-28 22:31:11
 author: ACE NI
 tags:
   - Docker
 categories:
   - 高并发架构
-date: 2018-06-28 22:31:11
 ---
 Linux 容器不是模拟一个完整的操作系统，而是对进程进行隔离。
 

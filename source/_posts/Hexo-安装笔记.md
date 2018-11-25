@@ -1,3 +1,4 @@
+---
 title: Hexo 安装笔记
 date: 2018-11-24 14:15:10
 author: ACE NI
@@ -60,7 +61,7 @@ deploy:
     github: https://github.com/your/your.github.io.git,master
     coding: https://git.coding.net/your/Hexo_Blog.git,master
 ```
-![](https://ws3.sinaimg.cn/large/006tNbRwgy1fxjh7cem39j30t807adfy.jpg)
+![](https://ws3.sinaimg.cn/large/006tNbRwgy1fxjiask230j30sq06qq31.jpg)
 
 如存在账号问题可以配置`.git/config`尝试解决。
 
@@ -89,7 +90,7 @@ $ hexo s
 
 打开谷歌浏览器 http://localhost:4000/ 即可实时预览。
 
-编辑器选择 `Typora`，开启源码模式，专注模式，打字机模式，写起来真的很爽。
+编辑器选择 `Typora`，开启源码模式，专注模式，打字机模式，不用按`Ctrl + S` 写起来真的很爽。
 图片上传选择`iPic`，使用默认的微博图床，有条件可以付费接各种云，微信截图自动压缩上传生成`markdown`图片链接，复制即可插入。
 
 ![](https://ws3.sinaimg.cn/large/006tNbRwgy1fxjhsxdpdyj31jn0u0qg1.jpg)

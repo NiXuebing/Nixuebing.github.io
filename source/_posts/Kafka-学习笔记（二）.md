@@ -1,10 +1,11 @@
+---
 title: Kafka 学习笔记（二）
+date: 2018-05-03 22:57:00
 author: ACE NI
 tags:
   - kafka
 categories:
   - 高并发架构
-date: 2018-05-03 22:57:00
 ---
 # kafka核心组件
 

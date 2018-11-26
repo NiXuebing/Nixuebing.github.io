@@ -3,9 +3,9 @@ title: linux性能学习
 date: 2018-11-24 22:20:16
 author: ACE NI
 tags:
-  - linux
+  - 平均负载
 categories:
-  - 高并发架构
+  - Linux
 ---
 # 性能学习基础
 ## 性能指标是什么

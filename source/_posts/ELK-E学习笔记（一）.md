@@ -76,6 +76,28 @@ consistency，即一致性。在默认设置下，即使仅仅是在试图执行
 
 
 
+## 深入搜索
+
+一定要了解 `term` 和 `terms` 是 *包含（contains）* 操作，而非 *等值（equals）* （判断）。
+
+https://www.elastic.co/guide/cn/elasticsearch/guide/cn/_finding_multiple_exact_values.html
+
+
+
+`range` 查询同样可以处理字符串字段， 字符串范围可采用 *字典顺序（lexicographically）* 或字母顺序（alphabetically）。例如，下面这些字符串是采用字典序（lexicographically）排序的：
+
+- 5, 50, 6, B, C, a, ab, abb, abc, b
+
+数字和日期字段的索引方式使高效地范围计算成为可能。 但字符串却并非如此，要想对其使用范围过滤，Elasticsearch 实际上是在为范围内的每个词项都执行 `term` 过滤器，这会比日期或数字的范围过滤慢许多。
+
+字符串范围在过滤 *低基数（low cardinality）* 字段（即只有少量唯一词项）时可以正常工作，但是唯一词项越多，字符串范围的计算会越慢。
+
+
+
+## 全文搜索
+
+
+
 
 
 

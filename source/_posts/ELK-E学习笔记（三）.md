@@ -23,6 +23,8 @@ action.auto_create_index: false
 action.destructive_requires_name: true
 ```
 
+<!-- more -->
+
 ## 索引设置
 
 `number_of_shards`
@@ -108,4 +110,36 @@ POST /_aliases
 ```
 
 # 分片
+
+**新的文档被添加到内存缓冲区并且被追加到了事务日志**
+
+![mark](http://pic-cloud.ice-leaf.top/pic-cloud/20190112/z3AJiIOXriPF.png?imageslim)
+
+ **刷新（refresh）完成后, 缓存被清空但是事务日志不会**
+
+![mark](http://pic-cloud.ice-leaf.top/pic-cloud/20190112/ig35kVGz0oA2.png?imageslim)
+
+- 这些在内存缓冲区的文档被写入到一个新的段中，且没有进行 `fsync` 操作。
+- 这个段被打开，使其可被搜索。
+- 内存缓冲区被清空。
+
+**事务日志不断积累文档**
+
+![mark](http://pic-cloud.ice-leaf.top/pic-cloud/20190112/fLC5y2zhHhwq.png?imageslim)
+
+**在刷新（flush）之后，段被全量提交，并且事务日志被清空**
+
+![mark](http://pic-cloud.ice-leaf.top/pic-cloud/20190112/eVHJw2E4vQw9.png?imageslim)
+
+每隔一段时间--例如 translog 变得越来越大--索引被刷新（flush）；一个新的 translog 被创建，并且一个全量提交被执行
+
+- 所有在内存缓冲区的文档都被写入一个新的段。
+- 缓冲区被清空。
+- 一个提交点被写入硬盘。
+- 文件系统缓存通过 `fsync` 被刷新（flush）。
+- 老的 translog 被删除。
+
+translog 提供所有还没有被刷到磁盘的操作的一个持久化纪录。当 Elasticsearch 启动的时候， 它会从磁盘中使用最后一个提交点去恢复已知的段，并且会重放 translog 中所有在最后一次提交后发生的变更操作。
+
+translog 也被用来提供实时 CRUD 。当你试着通过ID查询、更新、删除一个文档，它会在尝试从相应的段中检索之前， 首先检查 translog 任何最近的变更。这意味着它总是能够实时地获取到文档的最新版本。
 

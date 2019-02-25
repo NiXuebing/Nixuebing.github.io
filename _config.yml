@@ -80,7 +80,7 @@ deploy:
   type: git
   repository: 
     github: https://github.com/NiXuebing/Nixuebing.github.io.git,master
-    coding: https://git.coding.net/Nixuebing/Hexo_Blog.git,master
+    coding: https://git.dev.tencent.com/Nixuebing/Hexo_Blog.git,master
 # repository: 
 #   github: git@github.com:NiXuebing/Nixuebing.github.io.git,master
 #   coding: git@git.coding.net:Nixuebing/Hexo_Blog.git,master

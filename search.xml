@@ -85,8 +85,8 @@
         <category>MySQL</category>
       </categories>
       <tags>
-        <tag>数据库事务</tag>
         <tag>数据库锁</tag>
+        <tag>数据库事务</tag>
       </tags>
   </entry>
   <entry>
@@ -108,8 +108,8 @@
         <category>MySQL</category>
       </categories>
       <tags>
-        <tag>数据库索引</tag>
         <tag>数据库事务</tag>
+        <tag>数据库索引</tag>
       </tags>
   </entry>
   <entry>

@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ELK,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基础入门一个 Elasticsearch 请求和任何 HTTP 请求一样由若干相同的部件组成： 1curl -X&amp;lt;VERB&amp;gt; &amp;apos;&amp;lt;PROTOCOL&amp;gt;://&amp;lt;HOST&amp;gt;:&amp;lt;PORT&amp;gt;/&amp;lt;PATH&amp;gt;?&amp;lt;QUERY_STRING&amp;gt;&amp;apos; -d &amp;apos;&amp;lt;BODY&amp;gt;&amp;apos; 被 &amp;lt; &amp;gt;">
+<meta name="keywords" content="ELK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK-E学习笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2019/01/09/ELK-E学习笔记（一）/index.html">
+<meta property="og:site_name" content="晨星坠·随笔">
+<meta property="og:description" content="基础入门一个 Elasticsearch 请求和任何 HTTP 请求一样由若干相同的部件组成： 1curl -X&amp;lt;VERB&amp;gt; &amp;apos;&amp;lt;PROTOCOL&amp;gt;://&amp;lt;HOST&amp;gt;:&amp;lt;PORT&amp;gt;/&amp;lt;PATH&amp;gt;?&amp;lt;QUERY_STRING&amp;gt;&amp;apos; -d &amp;apos;&amp;lt;BODY&amp;gt;&amp;apos; 被 &amp;lt; &amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/dHa6TH7tkTjk.png?imageslim">
+<meta property="og:image" content="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/PUBfrhKT2vEc.png?imageslim">
+<meta property="og:image" content="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/7dcm0b6yIUIs.png?imageslim">
+<meta property="og:image" content="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/VrEPrtvYxiBV.png?imageslim">
+<meta property="og:image" content="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/GuE5crTPJmwV.png?imageslim">
+<meta property="og:updated_time" content="2019-05-27T08:22:51.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK-E学习笔记（一）">
+<meta name="twitter:description" content="基础入门一个 Elasticsearch 请求和任何 HTTP 请求一样由若干相同的部件组成： 1curl -X&amp;lt;VERB&amp;gt; &amp;apos;&amp;lt;PROTOCOL&amp;gt;://&amp;lt;HOST&amp;gt;:&amp;lt;PORT&amp;gt;/&amp;lt;PATH&amp;gt;?&amp;lt;QUERY_STRING&amp;gt;&amp;apos; -d &amp;apos;&amp;lt;BODY&amp;gt;&amp;apos; 被 &amp;lt; &amp;gt;">
+<meta name="twitter:image" content="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/dHa6TH7tkTjk.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/09/ELK-E学习笔记（一）/">
+
+
+
+
+
+  <title>ELK-E学习笔记（一） | 晨星坠·随笔</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ad1d7061619e4e0e13247d91cb95bbfc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">晨星坠·随笔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/09/ELK-E学习笔记（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ACE NI">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晨星坠·随笔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ELK-E学习笔记（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T14:18:11+08:00">
+                2019-01-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-27T16:22:51+08:00">
+                2019-05-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/高并发架构/" itemprop="url" rel="index">
+                    <span itemprop="name">高并发架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/09/ELK-E学习笔记（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/09/ELK-E学习笔记（一）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/01/09/ELK-E学习笔记（一）/" class="leancloud_visitors" data-flag-title="ELK-E学习笔记（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基础入门"><a href="#基础入门" class="headerlink" title="基础入门"></a>基础入门</h1><p>一个 Elasticsearch 请求和任何 HTTP 请求一样由若干相同的部件组成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X&lt;VERB&gt; &apos;&lt;PROTOCOL&gt;://&lt;HOST&gt;:&lt;PORT&gt;/&lt;PATH&gt;?&lt;QUERY_STRING&gt;&apos; -d &apos;&lt;BODY&gt;&apos;</span><br></pre></td></tr></table></figure>
+<p>被 <code>&lt; &gt;</code> 标记的部件：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>VERB</code></td>
+<td style="text-align:left">适当的 HTTP <em>方法</em> 或 <em>谓词</em> : <code>GET</code>、 <code>POST</code>、 <code>PUT</code>、 <code>HEAD</code> 或者 <code>DELETE</code>。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PROTOCOL</code></td>
+<td style="text-align:left"><code>http</code> 或者 <code>https</code>（如果你在 Elasticsearch 前面有一个 <code>https</code> 代理）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>HOST</code></td>
+<td style="text-align:left">Elasticsearch 集群中任意节点的主机名，或者用 <code>localhost</code> 代表本地机器上的节点。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PORT</code></td>
+<td style="text-align:left">运行 Elasticsearch HTTP 服务的端口号，默认是 <code>9200</code> 。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PATH</code></td>
+<td style="text-align:left">API 的终端路径（例如 <code>_count</code> 将返回集群中文档数量）。Path 可能包含多个组件，例如：<code>_cluster/stats</code> 和 <code>_nodes/stats/jvm</code> 。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>QUERY_STRING</code></td>
+<td style="text-align:left">任意可选的查询字符串参数 (例如 <code>?pretty</code> 将格式化地输出 JSON 返回值，使其更容易阅读)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>BODY</code></td>
+<td style="text-align:left">一个 JSON 格式的请求体 (如果请求需要的话)</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h2 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h2><p>一个运行中的 Elasticsearch 实例称为一个 节点，而集群是由一个或者多个拥有相同 <code>cluster.name</code> 配置的节点组成， 它们共同承担数据和负载的压力。当有节点加入集群中或者从集群中移除节点时，集群将会<strong>重新平均分布</strong>所有的数据。</p>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>保存相关数据的地方。 索引实际上是指向一个或者多个物理 <em>分片</em> 的 <em>逻辑命名空间</em> 。</p>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>一个底层的 <em>工作单元</em> ，它仅保存了 全部数据中的一部分。一个分片是一个 Lucene 的实例，以及它本身就是一个完整的搜索引擎。</p>
+<p>一个分片可以是 <em>主</em> 分片或者 <em>副本</em> 分片。 索引内任意一个文档都归属于一个主分片，所以主分片的数目决定着索引能够保存的最大数据量。</p>
+<p>一个主分片最大能够存储 Integer.MAX_VALUE - 128 （2^31 -129） 个文档，但是实际最大值还需要参考你的使用场景：包括你使用的硬件， 文档的大小和复杂程度，索引和查询文档的方式以及你期望的响应时长。</p>
+<p>主分片的数目在索引创建时 就已经确定了下来。实际上，这个数目定义了这个索引能够 <em>存储</em> 的最大数据量。（实际大小取决于你的数据、硬件和使用场景。） 但是，读操作——搜索和返回数据——可以同时被主分片 <em>或</em> 副本分片所处理，所以当你拥有越多的副本分片时，也将拥有越高的吞吐量。</p>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>一个文档的 <code>_index</code> 、 <code>_type</code> 和 <code>_id</code> 唯一标识一个文档。</p>
+<p>文档 API：  <code>get</code> 、 <code>index</code> 、 <code>delete</code> 、 <code>bulk</code> 、 <code>update</code> 以及 <code>mget</code> </p>
+<h4 id="路由一个文档到一个分片中"><a href="#路由一个文档到一个分片中" class="headerlink" title="路由一个文档到一个分片中"></a>路由一个文档到一个分片中</h4><p><code>shard = hash(routing) % number_of_primary_shards</code></p>
+<p><code>routing</code> 是一个可变值，默认是文档的 <code>_id</code> ，也可以设置成一个自定义的值。</p>
+<p><code>routing</code> 通过 hash 函数生成一个数字，然后这个数字再除以 <code>number_of_primary_shards</code> （主分片的数量）后得到 <strong>余数</strong> 。这个分布在 <code>0</code> 到 <code>number_of_primary_shards-1</code> 之间的余数，就是我们所寻求的文档所在分片的位置。</p>
+<h4 id="新建、索引和删除文档"><a href="#新建、索引和删除文档" class="headerlink" title="新建、索引和删除文档"></a>新建、索引和删除文档</h4><p><code>POST</code>  /index/type    创建新文档。</p>
+<p><code>PUT</code> /index/type/_id   创建一个新文档或者替换一个现有的文档。</p>
+<p><code>DELETE</code> /index/type_id  删除一个文档。</p>
+<p><img src="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/dHa6TH7tkTjk.png?imageslim" alt="mark"></p>
+<ol>
+<li>客户端向 <code>Node 1</code> 发送新建、索引或者删除请求。</li>
+<li>节点使用文档的 <code>_id</code> 确定文档属于分片 0 。请求会被转发到 <code>Node 3</code>，因为分片 0 的主分片目前被分配在 <code>Node 3</code> 上。</li>
+<li><code>Node 3</code> 在主分片上面执行请求。如果成功了，它将请求并行转发到 <code>Node 1</code> 和 <code>Node 2</code> 的副本分片上。一旦所有的副本分片都报告成功, <code>Node 3</code> 将向协调节点报告成功，协调节点向客户端报告成功。</li>
+</ol>
+<p>在客户端收到成功响应时，文档变更已经在主分片和所有副本分片执行完成，变更是安全的。</p>
+<p>有一些可选的请求参数允许您影响这个过程，可能以数据安全为代价提升性能。这些选项很少使用，因为Elasticsearch已经很快</p>
+<p><code>consistency</code></p>
+<p>consistency，即一致性。在默认设置下，即使仅仅是在试图执行一个_写_操作之前，主分片都会要求必须要有 <em>规定数量(quorum)</em>（或者换种说法，也即必须要有大多数）的分片副本处于活跃可用状态，才会去执行_写<em>操作(其中分片副本可以是主分片或者副本分片)。这是为了避免在发生网络分区故障（network partition）的时候进行</em>写<em>操作，进而导致数据不一致。</em>规定数量_即：</p>
+<p><code>int( (primary + number_of_replicas) / 2 ) + 1</code></p>
+<p><code>consistency</code> 参数的值可以设为 <code>one</code> （只要主分片状态 ok 就允许执行_写<em>操作）,<code>all</code>（必须要主分片和所有副本分片的状态没问题才允许执行</em>写<em>操作）, 或 <code>quorum</code> 。默认值为 <code>quorum</code> , 即大多数的分片副本状态没问题就允许执行</em>写_操作。</p>
+<p>注意，<em>规定数量</em> 的计算公式中 <code>number_of_replicas</code> 指的是在索引设置中的设定副本分片数，而不是指当前处理活动状态的副本分片数。如果你的索引设置中指定了当前索引拥有三个副本分片，那规定数量的计算结果即：</p>
+<p><code>int( (primary + 3 replicas) / 2 ) + 1 = 3</code></p>
+<p>如果此时你只启动两个节点，那么处于活跃状态的分片副本数量就达不到规定数量，也因此您将无法索引和删除任何文档。</p>
+<p><code>timeout</code></p>
+<p>如果没有足够的副本分片会发生什么？ Elasticsearch会等待，希望更多的分片出现。默认情况下，它最多等待1分钟。 如果你需要，你可以使用 <code>timeout</code> 参数 使它更早终止： <code>100</code> 100毫秒，<code>30s</code> 是30秒。</p>
+<h4 id="取回一个文档"><a href="#取回一个文档" class="headerlink" title="取回一个文档"></a>取回一个文档</h4><p>取回一个文档： <code>GET _indx/_type/_id</code></p>
+<p>取回文档的一部分：<code>GET _index/_type/_id/_source=_field</code></p>
+<p><img src="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/PUBfrhKT2vEc.png?imageslim" alt="mark"></p>
+<ol>
+<li><p>客户端向 <code>Node 1</code> 发送获取请求。</p>
+</li>
+<li><p>节点使用文档的 <code>_id</code> 来确定文档属于分片 <code>0</code> 。分片 <code>0</code> 的副本分片存在于所有的三个节点上。 在这种情况下，它将请求转发到 <code>Node 2</code> 。</p>
+</li>
+<li><p><code>Node 2</code> 将文档返回给 <code>Node 1</code> ，然后将文档返回给客户端。</p>
+</li>
+</ol>
+<p>在处理读取请求时，协调结点在每次请求的时候都会通过轮询所有的副本分片来达到负载均衡。</p>
+<h4 id="局部更新文档"><a href="#局部更新文档" class="headerlink" title="局部更新文档"></a>局部更新文档</h4><p><code>POST</code> /index/type/_id  部分更新一个文档。</p>
+<p><img src="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/7dcm0b6yIUIs.png?imageslim" alt="mark"></p>
+<ol>
+<li>客户端向 <code>Node 1</code> 发送更新请求。</li>
+<li>它将请求转发到主分片所在的 <code>Node 3</code> 。</li>
+<li><code>Node 3</code> 从主分片检索文档，修改 <code>_source</code> 字段中的 JSON ，并且尝试重新索引主分片的文档。 如果文档已经被另一个进程修改，它会重试步骤 3 ，超过 <code>retry_on_conflict</code> 次后放弃。</li>
+<li>如果 <code>Node 3</code> 成功地更新文档，它将新版本的文档并行转发到 <code>Node 1</code> 和 <code>Node 2</code> 上的副本分片，重新建立索引。 一旦所有副本分片都返回成功， <code>Node 3</code> 向协调节点也返回成功，协调节点向客户端返回成功。</li>
+</ol>
+<p><strong>当主分片把更改转发到副本分片时， 它不会转发更新请求。 相反，它转发完整文档的新版本。</strong></p>
+<p>在 Elasticsearch 中文档是 <em>不可改变</em> 的，不能修改它们。 相反，如果想要更新现有的文档，需要 <em>重建索引</em>或者进行替换。</p>
+<p>调用<code>POST /index/type/_id</code>做部分更新的好处在于这个过程发生在分片内部，这样就避免了多次请求的网络开销。通过减少检索和重建索引步骤之间的时间，我们也减少了其他进程的变更带来冲突的可能性。</p>
+<p><em>在使用<code>spring-boot-starter-data-elasticsearch</code>时，由于API都被封装了，不确定实际调用的是<code>index API</code>还是<code>update API</code>，有待具体确认。</em></p>
+<p><code>mget</code>   取回多个文档 </p>
+<p><img src="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/VrEPrtvYxiBV.png?imageslim" alt="mark"></p>
+<ol>
+<li>客户端向 <code>Node 1</code> 发送 <code>mget</code> 请求。</li>
+<li><code>Node 1</code> 为每个分片构建多文档获取请求，然后并行转发这些请求到托管在每个所需的主分片或者副本分片的节点上。一旦收到所有答复， <code>Node 1</code> 构建响应并将其返回给客户端。</li>
+</ol>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/_Retrieving_Multiple_Documents.html" target="_blank" rel="noopener">https://www.elastic.co/guide/cn/elasticsearch/guide/current/_Retrieving_Multiple_Documents.html</a></p>
+<p><code>bulk</code>  批量操作</p>
+<p><img src="http://pic-cloud.ice-leaf.top/pic-cloud/20190110/GuE5crTPJmwV.png?imageslim" alt="mark"></p>
+<ol>
+<li>客户端向 <code>Node 1</code> 发送 <code>bulk</code> 请求。</li>
+<li><code>Node 1</code> 为每个节点创建一个批量请求，并将这些请求并行转发到每个包含主分片的节点主机。</li>
+<li>主分片一个接一个按顺序执行每个操作。当每个操作成功时，主分片并行转发新文档（或删除）到副本分片，然后执行下一个操作。 一旦所有的副本分片报告所有操作成功，该节点将向协调节点报告成功，协调节点将这些响应收集整理并返回给客户端。</li>
+</ol>
+<p>整个批量请求都需要由接收到请求的节点加载到内存中，因此该请求越大，其他请求所能获得的内存就越少。 批量请求的大小有一个最佳值，大于这个值，性能将不再提升，甚至会下降。 但是最佳值不是一个固定的值。它完全取决于硬件、文档的大小和复杂度、索引和搜索的负载的整体情况。</p>
+<p>幸运的是，很容易找到这个 <em>最佳点</em> ：通过批量索引典型文档，并不断增加批量大小进行尝试。 当性能开始下降，那么你的批量大小就太大了。一个好的办法是开始时将 1,000 到 5,000 个文档作为一个批次, 如果你的文档非常大，那么就减少批量的文档个数。</p>
+<p>密切关注你的批量请求的物理大小往往非常有用，一千个 1KB 的文档是完全不同于一千个 1MB 文档所占的物理大小。 一个好的批量大小在开始处理后所占用的物理大小约为 5-15 MB。</p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/bulk.html" target="_blank" rel="noopener">https://www.elastic.co/guide/cn/elasticsearch/guide/current/bulk.html</a></p>
+<p><code>并发冲突</code> 乐观并发控制</p>
+<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/optimistic-concurrency-control.html" target="_blank" rel="noopener">https://www.elastic.co/guide/cn/elasticsearch/guide/current/optimistic-concurrency-control.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ELK/" rel="tag"># ELK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/02/压力测试（一）/" rel="next" title="压力测试（一）">
+                <i class="fa fa-chevron-left"></i> 压力测试（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/10/ELK-E学习笔记（二）/" rel="prev" title="ELK-E学习笔记（二）">
+                ELK-E学习笔记（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ACE NI</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础入门"><span class="nav-number">1.</span> <span class="nav-text">基础入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#底层原理"><span class="nav-number">1.1.</span> <span class="nav-text">底层原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">1.1.1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片"><span class="nav-number">1.1.2.</span> <span class="nav-text">分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档"><span class="nav-number">1.1.3.</span> <span class="nav-text">文档</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#路由一个文档到一个分片中"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">路由一个文档到一个分片中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建、索引和删除文档"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">新建、索引和删除文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取回一个文档"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">取回一个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部更新文档"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">局部更新文档</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ACE NI</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">16.8k</span>
+  
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '3hHpponzRSPlceCmOEoKqj8c-gzGzoHsz',
+        appKey: '0JoqnGlxOX3VF4GcVY47qlLF',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("3hHpponzRSPlceCmOEoKqj8c-gzGzoHsz", "0JoqnGlxOX3VF4GcVY47qlLF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

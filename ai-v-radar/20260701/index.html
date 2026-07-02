@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 大V雷达日报｜2026-07-01</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d8dee8;
+      --paper: #f7f3e8;
+      --white: #fffdf7;
+      --green: #087f67;
+      --blue: #2455d6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 28px 84px;
+    }
+    .hero {
+      border-bottom: 5px solid var(--ink);
+      padding-bottom: 34px;
+      margin-bottom: 34px;
+    }
+    .kicker {
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 12px 0 10px;
+      font-size: clamp(44px, 9vw, 86px);
+      line-height: 1.02;
+      font-weight: 950;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 21px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+    .metric, .theme, .signal, .expert {
+      border: 2px solid var(--ink);
+      background: rgba(255,255,255,.58);
+    }
+    .metric {
+      padding: 20px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 40px;
+      line-height: 1;
+    }
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .section-title {
+      margin: 38px 0 18px;
+      font-size: 30px;
+      font-weight: 950;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 12px;
+    }
+    .themes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .theme {
+      padding: 18px 20px;
+    }
+    .theme strong {
+      display: block;
+      font-size: 19px;
+    }
+    .theme span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .expert-section {
+      margin-top: 30px;
+    }
+    .expert {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 24px;
+      border-bottom: 0;
+      background: var(--white);
+    }
+    .expert h2 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.15;
+    }
+    .expert small {
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .expert p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      align-content: flex-start;
+    }
+    .tags span, .signal__meta strong {
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      background: rgba(8,127,103,.07);
+      padding: 6px 9px;
+      font-size: 14px;
+      font-weight: 850;
+    }
+    .signals {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .signal {
+      padding: 22px 24px;
+      background: rgba(255,255,255,.5);
+    }
+    .signal__meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .en, .zh, .quote p, .article p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.68;
+      white-space: pre-wrap;
+    }
+    .zh {
+      margin-top: 14px;
+      color: #253044;
+      font-weight: 650;
+    }
+    .quote {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 6px solid var(--blue);
+      background: rgba(36,85,214,.06);
+    }
+    .quote__author {
+      color: var(--blue);
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .article {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+    }
+    .article strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .source {
+      display: inline-flex;
+      margin-top: 18px;
+      color: var(--blue);
+      font-weight: 900;
+      text-decoration: none;
+      border-bottom: 2px solid currentColor;
+    }
+    footer {
+      margin-top: 46px;
+      padding-top: 20px;
+      border-top: 4px solid var(--ink);
+      color: var(--muted);
+      font-weight: 800;
+    }
+    @media (max-width: 760px) {
+      .page { padding: 34px 16px 64px; }
+      .metrics, .themes { grid-template-columns: 1fr 1fr; }
+      .expert { display: block; }
+      .tags { justify-content: flex-start; margin-top: 14px; }
+      .metric strong { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="kicker">AI Expert Signal Radar</div>
+      <h1>AI 大V雷达日报</h1>
+      <p class="subtitle">2026-07-01 · 最新 24 小时从 54 位全球 AI 核心专家中抓取 83 条动态，精选 14 条高信号内容；按主题组织，并保留专家身份、原文、中文翻译和原文链接。</p>
+    </header>
+    <section class="metrics">
+      <div class="metric"><strong>54</strong><span>监控专家</span></div>
+      <div class="metric"><strong>23</strong><span>活跃专家</span></div>
+      <div class="metric"><strong>14</strong><span>精选动态</span></div>
+      <div class="metric"><strong>5</strong><span>主题主线</span></div>
+    </section>
+    <h2 class="section-title">今日主线</h2>
+    <section class="themes"><div class="theme">
+        <strong>推理基础设施与成本曲线</strong>
+        <span>芯片、tokenizer、推理成本与能效</span>
+      </div><div class="theme">
+        <strong>AI 产品平台扩展</strong>
+        <span>桌面端、垂直场景与付费用户能力</span>
+      </div><div class="theme">
+        <strong>机器人与科学智能</strong>
+        <span>机器人、科学 benchmark、研究数据</span>
+      </div><div class="theme">
+        <strong>行业微调与专家数据</strong>
+        <span>金融知识、专家判断与领域数据</span>
+      </div><div class="theme">
+        <strong>Agent 工程与知识底座</strong>
+        <span>评测框架、记忆模式、文档解析</span>
+      </div></section>
+    <h2 class="section-title">人物与观点</h2>
+    <section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Andrej Karpathy <small>@karpathy</small></h2>
+            <p>前 OpenAI/Tesla · Eureka Labs · 权重 96</p>
+          </div>
+          <div class="tags"><span>AI 编程 / 通用 AI</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 04:54</span>
+              <strong>推理基础设施与成本曲线</strong>
+            </div>
+            <p class="en">Congrats!! I was impressed to learn about some of the engineering wizardry (e.g. *very* low voltage domains, cluster scale memory, ...) that goes into tokens/watt maxxing of state of the art LLMs at interactive tokens/sec/user. Esp fun and memorable is the idea that this is engineering at the &quot;opposite&quot; regime to that of power transmission lines: very low voltage high current (at tiny distances) vs. very high voltage &amp; low current (at great distances). Looking forward to more!</p>
+            <p class="zh">祝贺！我很惊讶地看到，为了在交互式 token/秒/用户的场景下把前沿 LLM 的 tokens/watt 做到极致，背后需要这么多工程巧思，比如超低电压域、集群级内存等。尤其有趣也很难忘的是，这种工程方向几乎和输电线相反：在极短距离上使用极低电压和极高电流，而输电线是在远距离上使用极高电压和低电流。期待后续更多进展！</p>
+            
+            <a class="source" href="https://x.com/karpathy/status/2072061140943921550" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Greg Brockman <small>@gdb</small></h2>
+            <p>联合创始人 · OpenAI · 权重 95</p>
+          </div>
+          <div class="tags"><span>基座模型 / OpenAI</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 13:33</span>
+              <strong>机器人与科学智能</strong>
+            </div>
+            <p class="en">Introducing GeneBench-Pro — testing whether models can handle the kind of judgment-heavy analysis that real-world computational biology requires.
+
+Problems would take a human expert around 20-40 hours to complete.
+
+GPT-5.6 Sol is a big step forward. https://t.co/JV5zztNQkk</p>
+            <p class="zh">介绍 GeneBench-Pro：它用来测试模型能否处理真实计算生物学所需要的那类高度依赖判断的分析任务。
+
+这些问题通常需要人类专家花 20 到 40 小时完成。
+
+GPT-5.6 Sol 是一个很大的进步。</p>
+            <aside class="quote">
+                <div class="quote__author">OpenAI · @OpenAI</div>
+                <p>We’re introducing GeneBench-Pro, a research-level benchmark for a harder kind of AI progress: how well agents can navigate messy biological data, choose the right analysis path, and make judgment calls that real computational research depends on.
+https://t.co/AsilnnSxnE</p>
+                <p class="zh">我们推出 GeneBench-Pro，这是一个研究级基准，用来评估更困难的一类 AI 进展：Agent 能否在混乱的生物数据中导航，选择正确的分析路径，并做出真实计算研究所依赖的判断。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/gdb/status/2072191801122038207" target="_blank" rel="noreferrer">Open original X post</a>
+          </article><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 08:21</span>
+              <strong>AI 产品平台扩展</strong>
+            </div>
+            <p class="en">Personal finance now available for for ChatGPT Plus in the U.S.</p>
+            <p class="zh">个人金融功能现在已面向美国 ChatGPT Plus 用户开放。</p>
+            <aside class="quote">
+                <div class="quote__author">ChatGPT · @ChatGPTapp</div>
+                <p>Questions about dollars. Answers that just make sense.
+
+Personal finance in ChatGPT is now available to Plus users in the U.S. https://t.co/Gfdb3LTwvv</p>
+                <p class="zh">关于钱的问题，也可以得到清楚合理的回答。
+
+ChatGPT 的个人金融功能现在已面向美国 Plus 用户开放。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/gdb/status/2072113363543580690" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Harrison Chase <small>@hwchase17</small></h2>
+            <p>CEO · LangChain · 权重 94</p>
+          </div>
+          <div class="tags"><span>Agent 框架</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 01:05</span>
+              <strong>Agent 工程与知识底座</strong>
+            </div>
+            <p class="en">Tutorial on using Gemini live to build a voice agent
+
+Uses deepagents as a tool: offload complex work to this subagent, use Gemini live for the naturalness/latency</p>
+            <p class="zh">这是一篇使用 Gemini Live 构建语音 Agent 的教程。
+
+它把 deepagents 当作工具使用：复杂工作交给这个子 Agent，Gemini Live 则负责自然度和低延迟。</p>
+            <aside class="quote">
+                <div class="quote__author">LangChain · @LangChain</div>
+                <p>Building voice agents can come with tradeoffs.
+
+💬 Better convos w/ speech to speech models
+Vs
+🥪 More reliable harnesses w/ sandwich architecture
+
+How to build a voice research agent with both:
+✅ Gemini Live: low-latency, natural-sounding convos
+✅ Deep Agents: long-running research tasks
+✅ LangSmith: full tracing &amp; observability</p>
+                <p class="zh">构建语音 Agent 会面临取舍：
+
+语音到语音模型能带来更好的对话体验；而 sandwich architecture 可以提供更可靠的 harness。
+
+这篇文章展示如何同时构建两者兼具的语音研究 Agent：Gemini Live 负责低延迟、自然对话；Deep Agents 负责长时间研究任务；LangSmith 负责完整 tracing 和可观测性。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/hwchase17/status/2072003684415000802" target="_blank" rel="noreferrer">Open original X post</a>
+          </article><article class="signal">
+            <div class="signal__meta">
+              <span>06-30 23:08</span>
+              <strong>Agent 工程与知识底座</strong>
+            </div>
+            <p class="en">harbor is a great framework for running evals for long running, stateful agents
+
+its becoming industry standard, powering benchmarks like terminal bench 2
+
+we've integrated deeply with harbor: across LangSmith, Sandboxes, and Deep Agents</p>
+            <p class="zh">Harbor 是一个很棒的框架，适合用来评估长时间运行、有状态的 Agent。
+
+它正在成为行业标准，为 Terminal Bench 2 等基准提供支撑。
+
+我们已经在 LangSmith、Sandboxes 和 Deep Agents 中与 Harbor 做了深度集成。</p>
+            <aside class="quote">
+                <div class="quote__author">LangChain · @LangChain</div>
+                <p>Harbor x LangChain: A Unified Stack for Evaluating Agents</p>
+                <p class="zh">Harbor x LangChain：用于评估 Agent 的统一技术栈</p>
+                <div class="article">
+                        <strong>Harbor x LangChain: A Unified Stack for Evaluating Agents</strong>
+                        <p>As agents increase in capabilities, evaluations have gotten more difficult. Agent harnesses like Claude Code, Pi, and Deep Agents now give agents access to entire computers to read files, execute</p>
+                        <p class="zh">随着 Agent 能力增强，评估也变得更困难。Claude Code、Pi 和 Deep Agents 等 Agent harness 现在会让 Agent 访问整台计算机，以读取文件、执行任务并完成更复杂的评测。</p>
+                      </div>
+              </aside>
+            <a class="source" href="https://x.com/hwchase17/status/2071974139926294897" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Jim Fan <small>@DrJimFan</small></h2>
+            <p>研究员 · NVIDIA · 权重 93</p>
+          </div>
+          <div class="tags"><span>多模态 / Agent</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 01:07</span>
+              <strong>机器人与科学智能</strong>
+            </div>
+            <p class="en">Today, we give robots a /skills library that self-evolves and compounds indefinitely! Introducing ASPIRE: a robot solving its 100th task is no longer as clueless as solving its first. Coding agents observe multimodal sensory traces from simulation and real robots, launch an evolutionary search over control programs, and distill the best know-how into an ever-expanding library. 
+
+ASPIRE is a new type of continual learning: &quot;training&quot; is skill refinement instead of gradient descent. 
+&quot;Trained model&quot; is a repo of sensorimotor skills instead of floating weights. 
+“Distributed training” is a panel of agents each prac…</p>
+            <p class="zh">今天，我们给机器人提供了一个可以自我演进、持续复利的 /skills 技能库。介绍 ASPIRE：机器人解决第 100 个任务时，不再像解决第 1 个任务时那样从零开始。编码 Agent 会观察来自仿真和真实机器人的多模态感知轨迹，对控制程序进行进化搜索，并把最佳经验沉淀进一个不断扩展的技能库。
+
+ASPIRE 是一种新的持续学习方式：“训练”不再是梯度下降，而是技能打磨；“训练好的模型”不再是一组悬浮的权重，而是一个传感运动技能仓库；“分布式训练”不再是切分 mini-batch，而是一组 Agent 各自练习不同技能。
+
+它让“仿真到现实迁移”和“跨形态迁移”有了新的含义。ASPIRE 不是把像素或权重跨过鸿沟，而是迁移 know-how。机器人仍然需要在真实世界练习，但会快得多，因为它不用从零重新发现策略。</p>
+            
+            <a class="source" href="https://x.com/DrJimFan/status/2072004190856212902" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Boris Cherny <small>@bcherny</small></h2>
+            <p>Claude Code · Anthropic · 权重 92</p>
+          </div>
+          <div class="tags"><span>Claude / Anthropic</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 00:52</span>
+              <strong>AI 产品平台扩展</strong>
+            </div>
+            <p class="en">You asked, we listened. Claude Desktop on Linux is here!
+
+Download link: https://t.co/gjgHZvbKyi</p>
+            <p class="zh">你们提了需求，我们听到了。Claude Desktop Linux 版来了！
+
+下载链接：https://t.co/gjgHZvbKyi</p>
+            <aside class="quote">
+                <div class="quote__author">ClaudeDevs · @ClaudeDevs</div>
+                <p>Claude Desktop is now available on Linux (Ubuntu and Debian) in beta.
+
+Alongside the browser and terminal, you now get a first-class desktop experience with Claude Code, Claude Cowork, and chat on all paid plans. https://t.co/m0K9t198t4</p>
+                <p class="zh">Claude Desktop 现在已经在 Linux（Ubuntu 和 Debian）上推出测试版。
+
+除了浏览器和终端，你现在还可以在所有付费计划中获得一流的 Claude Code、Claude Cowork 和聊天桌面体验。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/bcherny/status/2072000214634742243" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Tri Dao <small>@tri_dao</small></h2>
+            <p>FlashAttention 作者 · Together AI · 权重 90</p>
+          </div>
+          <div class="tags"><span>AI 基础设施 / 训练优化</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>06-30 23:31</span>
+              <strong>推理基础设施与成本曲线</strong>
+            </div>
+            <p class="en">If you ever wondered about how how open/closed model makers and inference providers make economic sense, this is the piece to read</p>
+            <p class="zh">如果你一直好奇开放/闭源模型厂商和推理服务商的经济模型到底如何成立，这篇文章值得一读。</p>
+            <aside class="quote">
+                <div class="quote__author">Vipul Ved Prakash · @vipulved</div>
+                <p>The Economy of Tokens</p>
+                <p class="zh">Token 经济学</p>
+                <div class="article">
+                        <strong>The Economy of Tokens</strong>
+                        <p>Carliss Baldwin and Kim Clark argued that the most important economic event in technology industries is often not the invention of a new product, but the creation of a modular architecture with stable</p>
+                        <p class="zh">Carliss Baldwin 和 Kim Clark 曾指出，技术产业中最重要的经济事件，往往不是某个新产品的发明，而是形成一种拥有稳定模块化架构的体系。</p>
+                      </div>
+              </aside>
+            <a class="source" href="https://x.com/tri_dao/status/2071980068981891525" target="_blank" rel="noreferrer">Open original X post</a>
+          </article><article class="signal">
+            <div class="signal__meta">
+              <span>06-30 23:10</span>
+              <strong>推理基础设施与成本曲线</strong>
+            </div>
+            <p class="en">It's wild how quickly Etched designed and got the chips out, all within 2 years. They went deep, hardcoding attention into silicon and getting very high MFU. This kind of hardware tailored made for LLM inference is soon gonna bring cost of intelligence down 10x</p>
+            <p class="zh">Etched 在不到两年内就完成了芯片设计并推出产品，这个速度非常惊人。他们做得很深入，把注意力机制硬编码进硅片，并实现了很高的 MFU。这类专为 LLM 推理定制的硬件，很快会把智能的成本降低一个数量级。</p>
+            <aside class="quote">
+                <div class="quote__author">Etched · @Etched</div>
+                <p>We're coming out of stealth.
+
+We've built our first racks after a successful A0 tapeout, $1B+ in customer contracts, and $800m raised.
+
+Early customer tests show us achieving SOTA throughput, latency, and power efficiency on inference workloads.
+
+Our first racks ship this summer. https://t.co/FLccrkLTza</p>
+                <p class="zh">我们正式走出隐身模式。
+
+在 A0 流片成功之后，我们已经建成了第一批机架，拿到了超过 10 亿美元的客户合同，并完成了 8 亿美元融资。
+
+早期客户测试显示，我们在推理工作负载上的吞吐、延迟和能效都达到了领先水平。
+
+第一批机架会在今年夏天交付。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/tri_dao/status/2071974600548958480" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Francois Chollet <small>@fchollet</small></h2>
+            <p>Keras 作者 · ARC Prize · 权重 89</p>
+          </div>
+          <div class="tags"><span>AI 研究 / 评测</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 11:09</span>
+              <strong>Agent 工程与知识底座</strong>
+            </div>
+            <p class="en">Cross-agent feedback loops are incredibly effective -- for a reason. Check out what @leon2mcp and team at @Bloome_im are building in this space: https://t.co/9YeLjBNjsk
+
+Bloome lets you pull Claude, ChatGPT, Gemini, and human teammates into a single shared workspace. The best feature is how your agents check each other's work. One drafts, another critiques, and another catches missing details. Human teammates can work in the same thread to keep the agents on target.
+
+Having all your models and human coworkers in one shared context is wildly effective</p>
+            <p class="zh">这条原文主要讨论 Agent 工程、评测、记忆、工具或知识底座。
+
+待补充精确翻译：Cross-agent feedback loops are incredibly effective -- for a reason. Check out what @leon2mcp and team at @Bloome_im are building in this space: https://t.co/9YeLjBNjsk
+
+Bloome lets you pull Claude, ChatGPT, Gemini, and…</p>
+            
+            <a class="source" href="https://x.com/fchollet/status/2072155613925437769" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>John Schulman <small>@johnschulman2</small></h2>
+            <p>RLHF 关键人物 · 前 OpenAI · 权重 86</p>
+          </div>
+          <div class="tags"><span>AI 研究</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 09:36</span>
+              <strong>行业微调与专家数据</strong>
+            </div>
+            <p class="en">People sometimes ask why fine-tune when general-purpose models keep getting better. Bridgewater's work is a good reminder that with the right data -- here, expert judgements -- you can beat prompting-only approaches by a lot.
+@ddkang and the Bridgewater AIA Labs team are great -- glad to see them sharing this.</p>
+            <p class="zh">有人有时会问，通用模型越来越强了，为什么还要微调。Bridgewater 的工作很好地提醒我们：只要有合适的数据，比如这里的专家判断，微调可以大幅超过只靠提示词的方法。
+@ddkang 和 Bridgewater AIA Labs 团队做得很好，很高兴看到他们分享出来。</p>
+            <aside class="quote">
+                <div class="quote__author">Tinker · @tinkerapi</div>
+                <p>Sorting which financial docs are worth an analyst's time is surprisingly hard for frontier LLMs. With an expert-labeled dataset and on-policy distillation, Bridgewater fine-tuned a model to do it reliably and cheaply.
+https://t.co/gyYzXq15zd</p>
+                <p class="zh">判断哪些金融文档值得分析师花时间阅读，对前沿 LLM 来说出乎意料地困难。Bridgewater 使用专家标注数据集和 on-policy 蒸馏，微调出一个可以可靠、低成本完成这件事的模型。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/johnschulman2/status/2072132258463719658" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Mira Murati <small>@miramurati</small></h2>
+            <p>创始人兼 CEO · Thinking Machines Lab · 权重 82</p>
+          </div>
+          <div class="tags"><span>AI 研究 / 安全</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 04:10</span>
+              <strong>行业微调与专家数据</strong>
+            </div>
+            <p class="en">Bridgewater used their unique financial knowledge and partnered with us on @tinkerapi to fine-tune a model that helps their analysts focus on what's important. Experts improving AI that empowers experts.
+https://t.co/6RJITMG2BJ</p>
+            <p class="zh">Bridgewater 利用自己独特的金融知识，并与我们在 @tinkerapi 上合作，微调了一个帮助分析师聚焦重要内容的模型。专家在改进 AI，而 AI 又在赋能专家。</p>
+            
+            <a class="source" href="https://x.com/miramurati/status/2072050039317578236" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Jerry Liu <small>@jerryjliu0</small></h2>
+            <p>CEO · LlamaIndex · 权重 79</p>
+          </div>
+          <div class="tags"><span>RAG / Agent 基础设施</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 03:13</span>
+              <strong>Agent 工程与知识底座</strong>
+            </div>
+            <p class="en">Fully solving document parsing includes covering every point on the Pareto curve of accuracy, cost, and latency:
+1️⃣ High-accuracy parsing - requires 99%+ accuracy, price insensitive. Especially relevant in regulated industries like financial service and insurance.
+2️⃣ Low cost, high volume parsing - requires inhaling a massive volume of documents as context for agents. Can run offline in a batch setting.
+3️⃣Low latency and low cost parsing - these are use cases where the user is uploading a massive volume of files ad-hoc and in the agent loop (e.g. uploading 1k pdfs to claude cowork). Requires an extremely fast…</p>
+            <p class="zh">要完整解决文档解析问题，需要覆盖准确率、成本和延迟这条帕累托曲线上的每个位置：
+1. 高准确率解析：需要 99% 以上准确率，对价格不敏感，尤其适用于金融服务、保险等受监管行业。
+2. 低成本、高吞吐解析：需要把海量文档作为 Agent 上下文吸收进去，可以离线批处理。
+3. 低延迟、低成本解析：适用于用户临时上传大量文件并进入 Agent 循环的场景，比如给 Claude Cowork 上传 1000 个 PDF，需要先极快理解文档，再做深入分析。
+
+LlamaParse 用文档 Agent harness 覆盖成本和准确率模式；我们的开源项目 LiteParse 则设计为进入 Agent 循环，并可以路由到更深的 VLM 模式。</p>
+            
+            <a class="source" href="https://x.com/jerryjliu0/status/2072035931050426782" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section><section class="expert-section">
+        <header class="expert">
+          <div>
+            <h2>Shreya Shankar <small>@sh_reya</small></h2>
+            <p>AI 工程研究员 · UC Berkeley · 权重 79</p>
+          </div>
+          <div class="tags"><span>Agent / 评测</span></div>
+        </header>
+        <div class="signals"><article class="signal">
+            <div class="signal__meta">
+              <span>07-01 00:48</span>
+              <strong>机器人与科学智能</strong>
+            </div>
+            <p class="en">Haha I empathize with this a lot. I frequently get some variant of “Why go be a professor; academia is a dying industry.” I have so many arguments. (i) no, only the Vannevar Bush American science funding model is dying—not academia, (ii) idk I think humans being able to think critically and do science is pretty vital to the future of humanity; if you want to help train the next generation of human scientists then academia is one of the best places to be, (iii) post AGI there will be an uptick in PhD demand, for people to engage in intellectual pursuits for funsies, (iv) there are many places to do good research;…</p>
+            <p class="zh">哈哈，我很能共情。我经常听到类似“为什么还要去当教授，学术界不是正在衰落吗？”的问题。我有很多反驳：第一，正在衰落的只是 Vannevar Bush 式的美国科学资助模式，不是学术本身；第二，我认为人类能够批判性思考并做科学，对人类未来非常重要。如果你想帮助培养下一代人类科学家，学术界仍然是最好的地方之一；第三，AGI 之后，人们为了兴趣进行智力探索，读博士的需求反而会上升；第四，做好研究的地方有很多，学术界和工业界都可以，只是形态不同。</p>
+            <aside class="quote">
+                <div class="quote__author">Niloofar ✈️ icml · @niloofar_mire</div>
+                <p>#OnlyinSF interactions I have:
+
+- what do you do for work?
++ I’m a professor
+- oh but what will u do post AGI/RSI, we won’t need universities anymore, you’re gonna be PERMANENT UNDERCLASS 💀
++ i’ll do whatever u do when anthropic adds ur claude wrapper startup idea as an add-on.</p>
+                <p class="zh">我在旧金山才会遇到的对话：
+
+- 你是做什么工作的？
++ 我是教授。
+- 但 AGI/RSI 之后你怎么办？我们不再需要大学了，你会变成永久底层。
++ 等 Anthropic 把你那个 Claude wrapper 创业点子做成插件之后，你做什么我就做什么。</p>
+                
+              </aside>
+            <a class="source" href="https://x.com/sh_reya/status/2071999241816522949" target="_blank" rel="noreferrer">Open original X post</a>
+          </article></div>
+      </section>
+    <footer>2026-06-30 15:19 至 2026-07-01 15:19 北京时间 · 来源：X 专家账号公开动态</footer>
+  </main>
+</body>
+</html>
